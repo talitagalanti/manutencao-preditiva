@@ -55,7 +55,7 @@ flowchart LR
 manutencao-preditiva/
 ├── data/
 │   └── raw/
-│       └── manutencao_preditiva.csv   # base original (não editar)
+│       └── manutencao_preditiva.csv   # base original
 ├── docs/
 │   └── dicionario_de_dados.md         # descrição das colunas
 ├── notebooks/
@@ -120,30 +120,8 @@ Acurácia de treino (base balanceada, 542 registros) e de teste (2.000 registros
 
 > **Observação:** como apenas 3,4% dos registros são falhas, um modelo que sempre respondesse "sem falha" teria 96,6% de acurácia sem detectar nenhuma quebra. Os modelos foram treinados com dados balanceados justamente para aprender a reconhecer falhas, por isso a acurácia deve ser lida junto com esse contexto.
 
-## 7. Organização das tarefas e branches
 
-O projeto segue o **Git Flow**:
-
-| Branch | Objetivo |
-|---|---|
-| `main` | Versão final e estável do projeto. |
-| `develop` | Integra as funcionalidades durante o desenvolvimento. |
-| `feature/estrutura-projeto` | Pastas, base de dados, dicionário de dados, requirements e README inicial. |
-| `feature/roteiro-notebook` | Notebook com a estrutura das 7 fases. |
-| `feature/fase-1-eda` | Análise exploratória: dimensões, tipos, describe e gráficos. |
-| `feature/fase-2-limpeza` | Duplicados, imputação de nulos e análise de outliers. |
-| `feature/fase-3-feature-engineering` | Criação da variável `potencia`. |
-| `feature/fase-4-divisao-balanceamento` | Seleção das preditoras, split 80/20 estratificado e under sampling no treino. |
-| `feature/fase-5-escalonamento` | StandardScaler para o KNN. |
-| `feature/fase-6-ajuste-parametros` | Variação de K e max_depth e análise de overfitting. |
-| `feature/fase-7-avaliacao-final` | Acurácia final no teste e veredito. |
-| `feature/readme-final` | Resultados e documentação final no README. |
-
-Cada branch foi criada a partir da `develop` e integrada a ela com merge, sem ser apagada depois. Cada fase tem um commit de implementação e um commit com o texto de análise.
-
-**Planejamento das tarefas.** Antes de começar o código, li o enunciado, as anotações do Departamento de Engenharia e os critérios de avaliação, e transformei os requisitos em uma lista de tarefas organizada pelas 7 fases do pipeline. Cada fase virou uma entrega independente, com a sua própria branch, e cada uma só começava depois que a anterior estava concluída e integrada à `develop`, porque uma fase depende do resultado da outra (por exemplo, a nova variável só pode ser criada depois do tratamento dos nulos). Primeiro preparei a estrutura do repositório (pastas, dados, dicionário de dados e dependências). Depois fiz as fases em ordem e, por último, a documentação. Usei a rubrica como checklist para conferir cada fase antes do merge.
-
-## 8. Melhorias futuras
+## . Melhorias futuras
 
 - **Outras métricas de avaliação:** a acurácia sozinha esconde quantas falhas reais o modelo deixa passar. Em manutenção, perder uma quebra custa mais do que uma inspeção extra, então vale avaliar especificamente a detecção da classe 1.
 - **Outras técnicas de balanceamento:** o Random Under Sampling descartou 7.458 registros normais do treino. Comparar com o SMOTE, que gera exemplos sintéticos de falha, permitiria aproveitar a base inteira.
@@ -152,6 +130,6 @@ Cada branch foi criada a partir da `develop` e integrada a ela com merge, sem se
 - **Testar outros modelos**, como Random Forest, que combina várias árvores e tende a ser mais estável.
 - **Organizar o código em scripts `.py`** reutilizáveis em `src/`, separando limpeza, features e treino.
 
-## 9. Autoria
+## 8. Autoria
 
 Talita Galanti
